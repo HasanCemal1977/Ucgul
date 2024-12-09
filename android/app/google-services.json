@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "219679248595",
+    "project_id": "ucgul-5cbec",
+    "storage_bucket": "ucgul-5cbec.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219679248595:android:24c4aac0f0be0745168426",
+        "android_client_info": {
+          "package_name": "com.program.ucgul1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCauf_crclkQOmncqwr7uQxuYyoUiNS9U4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

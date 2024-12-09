@@ -1,0 +1,43 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.firestoredeneme"  // Uygulamanızın doğru namespace'ini buraya yazın
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.program.ucgul1"  // Burayı doğru şekilde değiştirin
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+
+    buildFeatures {
+        buildConfig true  // BuildConfig özelliğini doğru şekilde etkinleştirdiniz
+    }
+}
+
+flutter {
+    source = "../.."  // Flutter SDK yolunun doğru olduğundan emin olun
+}
+apply plugin: 'com.google.gms.google-services'  // Firebase'i etkinleştiren satır
