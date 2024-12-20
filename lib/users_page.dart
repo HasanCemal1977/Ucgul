@@ -25,6 +25,7 @@ class _UsersPageState extends State<UsersPage> {
   final TextEditingController _dogumController = TextEditingController();
   final TextEditingController _meslekController = TextEditingController();
   final TextEditingController _kangrubuController = TextEditingController();
+  final TextEditingController _rehberController = TextEditingController();
   final TextEditingController _esisimController = TextEditingController();
   final TextEditingController _estelController = TextEditingController();
   final TextEditingController _esmailController = TextEditingController();
@@ -61,6 +62,7 @@ class _UsersPageState extends State<UsersPage> {
           'dogum': doc['dogum'],
           'meslek': doc['meslek'],
           'kangrubu': doc['kangrubu'],
+          'rehber': doc['rehber'],
           'esisim': doc['esisim'],
           'estel': doc['estel'],
           'esmail': doc['esmail'],
@@ -96,6 +98,7 @@ class _UsersPageState extends State<UsersPage> {
     String dogum = _dogumController.text.trim();
     String meslek = _meslekController.text.trim();
     String kangrubu = _kangrubuController.text.trim();
+    String rehber = _rehberController.text.trim();
     String esisim = _esisimController.text.trim();
     String estel = _estelController.text.trim();
     String esmail = _esmailController.text.trim();
@@ -120,6 +123,7 @@ class _UsersPageState extends State<UsersPage> {
         'dogum': dogum,
         'meslek': meslek,
         'kangrubu': kangrubu,
+        'rehber': rehber,
         'esisim': esisim,
         'estel': estel,
         'esmail': esmail,
@@ -199,6 +203,10 @@ class _UsersPageState extends State<UsersPage> {
                 Text.rich(TextSpan(children: <TextSpan>[
                   TextSpan(text: 'Kan Grubu: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['kangrubu']}'),
+                ])),
+                Text.rich(TextSpan(children: <TextSpan>[
+                  TextSpan(text: 'Rehber Üs:.: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  TextSpan(text: '${user['rehber']}'),
                 ])),
                 SizedBox(height: 30),
                 Text('Eşinin Bilgileri', style: TextStyle(fontSize: 22)),
@@ -291,6 +299,7 @@ class _UsersPageState extends State<UsersPage> {
     String dogum = _dogumController.text.trim();
     String meslek = _meslekController.text.trim();
     String kangrubu = _kangrubuController.text.trim();
+    String rehber = _rehberController.text.trim();
     String esisim = _esisimController.text.trim();
     String estel = _estelController.text.trim();
     String esmail = _esmailController.text.trim();
@@ -314,6 +323,7 @@ class _UsersPageState extends State<UsersPage> {
         'dogum': dogum,
         'meslek': meslek,
         'kangrubu': kangrubu,
+        'rehber': rehber,
         'esisim': esisim,
         'estel': estel,
         'esmail': esmail,
@@ -348,6 +358,7 @@ class _UsersPageState extends State<UsersPage> {
     _dogumController.clear();
     _meslekController.clear();
     _kangrubuController.clear();
+    _rehberController.clear();
     _esisimController.clear();
     _estelController.clear();
     _esmailController.clear();
@@ -379,6 +390,7 @@ class _UsersPageState extends State<UsersPage> {
     _dogumController.text = doc['dogum'] ?? '';
     _meslekController.text = doc['meslek'] ?? '';
     _kangrubuController.text = doc['kangrubu'] ?? '';
+    _rehberController.text = doc['rehber'] ?? '';
     _esisimController.text = doc['esisim'] ?? '';
     _estelController.text = doc['estel'] ?? '';
     _esmailController.text = doc['esmail'] ?? '';
@@ -443,6 +455,10 @@ class _UsersPageState extends State<UsersPage> {
                 TextField(
                   controller: _kangrubuController,
                   decoration: InputDecoration(labelText: 'Kan Grubu'),
+                ),
+                TextField(
+                  controller: _rehberController,
+                  decoration: InputDecoration(labelText: 'Rehber Üstadı'),
                 ),
                 TextField(
                   controller: _esisimController,
@@ -591,6 +607,10 @@ class _UsersPageState extends State<UsersPage> {
                 TextField(
                   controller: _kangrubuController,
                   decoration: InputDecoration(labelText: 'Kan Grubu'),
+                ),
+                TextField(
+                  controller: _rehberController,
+                  decoration: InputDecoration(labelText: 'Rehber Üstadı'),
                 ),
                 TextField(
                   controller: _esisimController,

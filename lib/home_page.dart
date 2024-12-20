@@ -258,75 +258,90 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Seçilen tarihe ait metinler
-          Flexible(
+          Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 16.0, right: 12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 10),
-                  Text('$selectedDate', style: MainHeader3),
-                  SizedBox(height: 10),
-                  Text('I. D:. Çalışması:', style: MainHeader),
-                  Flexible(
-                    child: Text(
-                      '$firstText',
-                      style: MainBody,
-                      textAlign: TextAlign.left,
+              child: Flexible(
+                child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                   // SizedBox(height: 10),
+                    Text('$selectedDate', style: MainHeader3),
+                  //  SizedBox(height: 10),
+                    Text('I. D:. Çalışması:', style: MainHeader),
+                    // Bu kısımdaki metni kaydırılabilir yapmak için SingleChildScrollView ekliyoruz
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Text(
+                          '$firstText',
+                          style: MainBody,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 15),
-                  Text('II. D:. Çalışması:', style: MainHeader),
-                  Flexible(
-                    child: Text(
-                      '$secondText',
-                      style: MainBody,
-                      textAlign: TextAlign.left,
+                  //  SizedBox(height: 8),
+                    Text('II. D:. Çalışması:', style: MainHeader),
+                    Flexible(
+                      child: SizedBox(height: 50,
+                        child: SingleChildScrollView(
+                          child: Text(
+                            '$secondText',
+                            style: MainBody,
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 15),
-                  Text('III. D:. Çalışması:', style: MainHeader),
-                  Flexible(
-                    child: Text(
-                      '$thirdText',
-                      style: MainBody,
-                      textAlign: TextAlign.left,
+                  //  SizedBox(height: 8),
+                    Text('III. D:. Çalışması:', style: MainHeader),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Text(
+                          '$thirdText',
+                          style: MainBody,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 15),
-                  Text('Kardeş Sofrası', style: MainHeader),
-                  Flexible(
-                    child: Text(
-                      '$fourthText',
-                      style: MainBody,
-                      textAlign: TextAlign.left,
+                 //   SizedBox(height: 8),
+                    Text('Kardeş Sofrası', style: MainHeader),
+                    SizedBox(height: 50,
+                      child: SingleChildScrollView(
+                        child: Text(
+                          '$fourthText',
+                          style: MainBody,
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
 
           // Cupertino Widget (Tarihler)
           SizedBox(
-            height: 160,
-            child: CupertinoPicker(
-              diameterRatio: .8,
-              useMagnifier: true,
-              magnification: 1.12,
-              itemExtent: 40, // Her öğe için yüksekliği belirliyoruz
-              onSelectedItemChanged: (index) {
-                setState(() {
-                  selectedDate = availableDates[index];
-                  selectedDateIndex = index;
-                });
-                _loadTextsForSelectedDate(selectedDate);
-              },
-              scrollController:
-              FixedExtentScrollController(initialItem: selectedDateIndex),
-              children: availableDates.map((date) {
-                return Text(date);
-              }).toList(),
+            height: 120,
+            child: Expanded(
+              child: CupertinoPicker(
+                diameterRatio: .8,
+                useMagnifier: true,
+                magnification: 1.12,
+                itemExtent: 40, // Her öğe için yüksekliği belirliyoruz
+                onSelectedItemChanged: (index) {
+                  setState(() {
+                    selectedDate = availableDates[index];
+                    selectedDateIndex = index;
+                  });
+                  _loadTextsForSelectedDate(selectedDate);
+                },
+                scrollController:
+                FixedExtentScrollController(initialItem: selectedDateIndex),
+                children: availableDates.map((date) {
+                  return Text(date);
+                }).toList(),
+              ),
             ),
           ),
         ],
@@ -357,7 +372,7 @@ class _HomePageState extends State<HomePage> {
         barrierDismissible: false, // Kullanıcı dışarıya tıklayarak dialog'ı kapatamasın
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Şifre Girişi"),
+            title: Text("Yönetici Girişi", style: MainBody,),
             content: SingleChildScrollView( // İçeriği kaydırılabilir yapmak için
               child: Column(
                 mainAxisSize: MainAxisSize.min, // Column boyutunu minimumda tut

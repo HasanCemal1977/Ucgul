@@ -11,24 +11,24 @@ class _UsersPageState extends State<UsersPage2> {
   List<Map<String, dynamic>> users = [];
 
   // Yeni kullanıcı formu için TextEditingController'lar
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _surnameController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _matriculNoController = TextEditingController();
-  final TextEditingController _sicilNoController = TextEditingController();
-  final TextEditingController _tekrisController = TextEditingController();
-  final TextEditingController _gecisController = TextEditingController();
-  final TextEditingController _yukselisController = TextEditingController();
-  final TextEditingController _dogumController = TextEditingController();
-  final TextEditingController _meslekController = TextEditingController();
-  final TextEditingController _kangrubuController = TextEditingController();
-  final TextEditingController _esisimController = TextEditingController();
-  final TextEditingController _estelController = TextEditingController();
-  final TextEditingController _esmailController = TextEditingController();
-  final TextEditingController _esmeslekController = TextEditingController();
-  final TextEditingController _esdogumController = TextEditingController();
-  final TextEditingController _eskangrubuController = TextEditingController();
+  // final TextEditingController _nameController = TextEditingController();
+  // final TextEditingController _surnameController = TextEditingController();
+  // final TextEditingController _phoneController = TextEditingController();
+  // final TextEditingController _emailController = TextEditingController();
+  // final TextEditingController _matriculNoController = TextEditingController();
+  // final TextEditingController _sicilNoController = TextEditingController();
+  // final TextEditingController _tekrisController = TextEditingController();
+  // final TextEditingController _gecisController = TextEditingController();
+  // final TextEditingController _yukselisController = TextEditingController();
+  // final TextEditingController _dogumController = TextEditingController();
+  // final TextEditingController _meslekController = TextEditingController();
+  // final TextEditingController _kangrubuController = TextEditingController();
+  // final TextEditingController _esisimController = TextEditingController();
+  // final TextEditingController _estelController = TextEditingController();
+  // final TextEditingController _esmailController = TextEditingController();
+  // final TextEditingController _esmeslekController = TextEditingController();
+  // final TextEditingController _esdogumController = TextEditingController();
+  // final TextEditingController _eskangrubuController = TextEditingController();
 
   String selectedUserId = '';  // Seçilen kullanıcının ID'si (güncelleme için)
 
@@ -57,6 +57,7 @@ class _UsersPageState extends State<UsersPage2> {
           'dogum': doc['dogum'],
           'meslek': doc['meslek'],
           'kangrubu': doc['kangrubu'],
+          'rehber': doc['rehber'],
           'esisim': doc['esisim'],
           'estel': doc['estel'],
           'esmail': doc['esmail'],
@@ -77,62 +78,62 @@ class _UsersPageState extends State<UsersPage2> {
 
 
   // Yeni kullanıcıyı Firebase'e kaydetme fonksiyonu
-  void _addUser() async {
-    String name = _nameController.text.trim();
-    String surname = _surnameController.text.trim();
-    String phone = _phoneController.text.trim();
-    String email = _emailController.text.trim();
-    String matriculNo = _matriculNoController.text.trim();
-    String sicilNo = _sicilNoController.text.trim();
-    String tekris = _tekrisController.text.trim();
-    String gecis = _gecisController.text.trim();
-    String yukselis = _yukselisController.text.trim();
-    String dogum = _dogumController.text.trim();
-    String meslek = _meslekController.text.trim();
-    String kangrubu = _kangrubuController.text.trim();
-    String esisim = _esisimController.text.trim();
-    String estel = _estelController.text.trim();
-    String esmail = _esmailController.text.trim();
-    String esmeslek = _esmeslekController.text.trim();
-    String esdogum = _esdogumController.text.trim();
-    String eskangrubu = _eskangrubuController.text.trim();
+  // void _addUser() async {
+  //   String name = _nameController.text.trim();
+  //   String surname = _surnameController.text.trim();
+  //   String phone = _phoneController.text.trim();
+  //   String email = _emailController.text.trim();
+  //   String matriculNo = _matriculNoController.text.trim();
+  //   String sicilNo = _sicilNoController.text.trim();
+  //   String tekris = _tekrisController.text.trim();
+  //   String gecis = _gecisController.text.trim();
+  //   String yukselis = _yukselisController.text.trim();
+  //   String dogum = _dogumController.text.trim();
+  //   String meslek = _meslekController.text.trim();
+  //   String kangrubu = _kangrubuController.text.trim();
+  //   String esisim = _esisimController.text.trim();
+  //   String estel = _estelController.text.trim();
+  //   String esmail = _esmailController.text.trim();
+  //   String esmeslek = _esmeslekController.text.trim();
+  //   String esdogum = _esdogumController.text.trim();
+  //   String eskangrubu = _eskangrubuController.text.trim();
 
 
 
     // Eğer tüm bilgiler girildiyse, Firebase'e ekleyelim
-    if (name.isNotEmpty && surname.isNotEmpty ) {
-      await FirebaseFirestore.instance.collection('users').add({
-        'name': name,
-        'surname': surname,
-        'phone': phone,
-        'email': email,
-        'matriculNo': matriculNo,
-        'sicilNo': sicilNo,
-        'tekris': tekris,
-        'gecis': gecis,
-        'yukselis': yukselis,
-        'dogum': dogum,
-        'meslek': meslek,
-        'kangrubu': kangrubu,
-        'esisim': esisim,
-        'estel': estel,
-        'esmail': esmail,
-        'esmeslek': esmeslek,
-        'esdogum': esdogum,
-        'eskangrubu': eskangrubu,
-
-      });
-
-      // Veriler başarılı şekilde kaydedildiğinde mesaj göster
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Kullanıcı başarıyla eklendi')));
-
-      // Formu temizle
-      _clearForm();
-
-      // Listeyi yeniden yükle
-      _loadUsers();
-    }
-  }
+    // if (name.isNotEmpty && surname.isNotEmpty ) {
+    //   await FirebaseFirestore.instance.collection('users').add({
+    //     'name': name,
+    //     'surname': surname,
+    //     'phone': phone,
+    //     'email': email,
+    //     'matriculNo': matriculNo,
+    //     'sicilNo': sicilNo,
+    //     'tekris': tekris,
+    //     'gecis': gecis,
+    //     'yukselis': yukselis,
+    //     'dogum': dogum,
+    //     'meslek': meslek,
+    //     'kangrubu': kangrubu,
+    //     'esisim': esisim,
+    //     'estel': estel,
+    //     'esmail': esmail,
+    //     'esmeslek': esmeslek,
+    //     'esdogum': esdogum,
+    //     'eskangrubu': eskangrubu,
+    //
+    //   });
+    //
+    //   // Veriler başarılı şekilde kaydedildiğinde mesaj göster
+    //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Kullanıcı başarıyla eklendi')));
+    //
+    //   // Formu temizle
+    //   _clearForm();
+    //
+    //   // Listeyi yeniden yükle
+    //   _loadUsers();
+    // }
+  // }
 
   // Kullanıcıyı görüntüleme fonksiyonu (Detaylar için)
   void _viewUserDetails(Map<String, dynamic> user) {
@@ -140,6 +141,7 @@ class _UsersPageState extends State<UsersPage2> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          //backgroundColor: Colors.grey.shade300,
           title: Text('Üye Bilgileri'),
           content: SingleChildScrollView(  // Wrap the content in a scrollable view
             child: Column(
@@ -209,6 +211,14 @@ class _UsersPageState extends State<UsersPage2> {
                   TextSpan(text: 'Kan Grubu: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['kangrubu']}'),
                 ])),
+                Divider(color: Colors.black26, thickness: 1, height: 20),
+
+                Text.rich(TextSpan(children: <TextSpan>[
+                  TextSpan(text: 'Rehber Üs:.: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  TextSpan(text: '${user['rehber']}'),
+                ])),
+                Divider(color: Colors.black, thickness: 3, height: 20),
+
                 SizedBox(height: 30),
                 Text('Eşinin Bilgileri', style: TextStyle(fontSize: 22)),
                 SizedBox(height: 15),
@@ -252,11 +262,13 @@ class _UsersPageState extends State<UsersPage2> {
             ),
           ),
           actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-              child: Text('Kapat'),
+            SizedBox(height: 30,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+                child: Text('Kapat'),
+              ),
             ),
           ],
         );
@@ -268,27 +280,27 @@ class _UsersPageState extends State<UsersPage2> {
 
 
   // Formu temizleme fonksiyonu
-  void _clearForm() {
-    _nameController.clear();
-    _surnameController.clear();
-    _phoneController.clear();
-    _emailController.clear();
-    _matriculNoController.clear();
-    _sicilNoController.clear();
-    _tekrisController.clear();
-    _gecisController.clear();
-    _yukselisController.clear();
-    _dogumController.clear();
-    _meslekController.clear();
-    _kangrubuController.clear();
-    _esisimController.clear();
-    _estelController.clear();
-    _esmailController.clear();
-    _esmeslekController.clear();
-    _esdogumController.clear();
-    _eskangrubuController.clear();
-
-  }
+  // void _clearForm() {
+  //   _nameController.clear();
+  //   _surnameController.clear();
+  //   _phoneController.clear();
+  //   _emailController.clear();
+  //   _matriculNoController.clear();
+  //   _sicilNoController.clear();
+  //   _tekrisController.clear();
+  //   _gecisController.clear();
+  //   _yukselisController.clear();
+  //   _dogumController.clear();
+  //   _meslekController.clear();
+  //   _kangrubuController.clear();
+  //   _esisimController.clear();
+  //   _estelController.clear();
+  //   _esmailController.clear();
+  //   _esmeslekController.clear();
+  //   _esdogumController.clear();
+  //   _eskangrubuController.clear();
+  //
+  // }
 
   // Ayarlar ikonu ile güncelleme popup'ı
   // void _showUpdateUserDialog(String userId) async {
