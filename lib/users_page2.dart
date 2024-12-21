@@ -1,8 +1,9 @@
-import 'package:firestoredeneme/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UsersPage2 extends StatefulWidget {
+  const UsersPage2({super.key});
+
   @override
   _UsersPageState createState() => _UsersPageState();
 }
@@ -142,120 +143,120 @@ class _UsersPageState extends State<UsersPage2> {
       builder: (context) {
         return AlertDialog(
           //backgroundColor: Colors.grey.shade300,
-          title: Text('Üye Bilgileri'),
+          title: const Text('Üye Bilgileri'),
           content: SingleChildScrollView(  // Wrap the content in a scrollable view
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'İsim: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'İsim: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['name']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),  // Divider after each item
+                const Divider(color: Colors.black26, thickness: 1, height: 20),  // Divider after each item
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Soyisim: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Soyisim: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['surname']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Telefon: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Telefon: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['phone']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'E-posta: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'E-posta: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['email']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Matrikül No: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Matrikül No: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['matriculNo']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Tekris: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Tekris: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['tekris']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Geçiş: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Geçiş: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['gecis']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Yükseliş: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Yükseliş: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['yukselis']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Doğum Tarihi: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Doğum Tarihi: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['dogum']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Meslek: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Meslek: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['meslek']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Kan Grubu: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Kan Grubu: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['kangrubu']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Rehber Üs:.: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Rehber Üs:.: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['rehber']}'),
                 ])),
-                Divider(color: Colors.black, thickness: 3, height: 20),
+                const Divider(color: Colors.black, thickness: 3, height: 20),
 
-                SizedBox(height: 30),
-                Text('Eşinin Bilgileri', style: TextStyle(fontSize: 22)),
-                SizedBox(height: 15),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const SizedBox(height: 30),
+                const Text('Eşinin Bilgileri', style: TextStyle(fontSize: 22)),
+                const SizedBox(height: 15),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'İsim: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'İsim: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['esisim']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Telefon: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Telefon: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['estel']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'E-posta: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'E-posta: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['esmail']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Meslek: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Meslek: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['esmeslek']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Doğum Tarihi: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Doğum Tarihi: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['esdogum']}'),
                 ])),
-                Divider(color: Colors.black26, thickness: 1, height: 20),
+                const Divider(color: Colors.black26, thickness: 1, height: 20),
 
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Kan Grubu: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Kan Grubu: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['eskangrubu']}'),
                 ])),
               ],
@@ -267,7 +268,7 @@ class _UsersPageState extends State<UsersPage2> {
                 onPressed: () {
                   Navigator.of(context).pop(); // Close the dialog
                 },
-                child: Text('Kapat'),
+                child: const Text('Kapat'),
               ),
             ),
           ],
@@ -343,7 +344,7 @@ class _UsersPageState extends State<UsersPage2> {
           title: Row(
           children: [
       Expanded(child: Image.asset('assets/images/ucgul.png')),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
              ],
         ),
 
@@ -363,7 +364,7 @@ class _UsersPageState extends State<UsersPage2> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
-                      icon: Icon(Icons.search),
+                      icon: const Icon(Icons.search),
                       onPressed: () => _viewUserDetails(user),
                     ),
 
@@ -372,7 +373,7 @@ class _UsersPageState extends State<UsersPage2> {
                 ),
 
               ),
-              Divider(color: Colors.black26, thickness: 1),
+              const Divider(color: Colors.black26, thickness: 1),
 
             ],
           );

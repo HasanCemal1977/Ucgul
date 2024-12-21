@@ -1,10 +1,10 @@
-import 'dart:ffi';
 
-import 'package:firestoredeneme/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UsersPage extends StatefulWidget {
+  const UsersPage({super.key});
+
   @override
   _UsersPageState createState() => _UsersPageState();
 }
@@ -135,7 +135,7 @@ class _UsersPageState extends State<UsersPage> {
       });
 
       // Veriler başarılı şekilde kaydedildiğinde mesaj göster
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Kullanıcı başarıyla eklendi')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Kullanıcı başarıyla eklendi')));
 
       // Formu temizle
       _clearForm();
@@ -151,88 +151,88 @@ class _UsersPageState extends State<UsersPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Üye Bilgileri'),
+          title: const Text('Üye Bilgileri'),
           content: SingleChildScrollView(  // Wrap the content in a scrollable view
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'İsim: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'İsim: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['name']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Soyisim: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Soyisim: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['surname']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Telefon: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Telefon: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['phone']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'E-posta: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'E-posta: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['email']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Matrikül No: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Matrikül No: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['matriculNo']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Sicil No: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Sicil No: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['sicilNo']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Tekris: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Tekris: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['tekris']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Geçiş: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Geçiş: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['gecis']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Yükseliş: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Yükseliş: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['yukselis']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Doğum Tarihi: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Doğum Tarihi: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['dogum']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Meslek: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Meslek: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['meslek']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Kan Grubu: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Kan Grubu: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['kangrubu']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Rehber Üs:.: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Rehber Üs:.: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['rehber']}'),
                 ])),
-                SizedBox(height: 30),
-                Text('Eşinin Bilgileri', style: TextStyle(fontSize: 22)),
-                SizedBox(height: 15),
+                const SizedBox(height: 30),
+                const Text('Eşinin Bilgileri', style: TextStyle(fontSize: 22)),
+                const SizedBox(height: 15),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'İsim: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'İsim: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['esisim']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Telefon: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Telefon: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['estel']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'E-posta: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'E-posta: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['esmail']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Meslek: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Meslek: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['esmeslek']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Doğum Tarihi: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Doğum Tarihi: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['esdogum']}'),
                 ])),
                 Text.rich(TextSpan(children: <TextSpan>[
-                  TextSpan(text: 'Kan Grubu: ', style: TextStyle(fontWeight: FontWeight.bold)),
+                  const TextSpan(text: 'Kan Grubu: ', style: TextStyle(fontWeight: FontWeight.bold)),
                   TextSpan(text: '${user['eskangrubu']}'),
                 ])),
               ],
@@ -243,7 +243,7 @@ class _UsersPageState extends State<UsersPage> {
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: Text('Kapat'),
+              child: const Text('Kapat'),
             ),
           ],
         );
@@ -258,20 +258,20 @@ class _UsersPageState extends State<UsersPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Silme Onayı'),
-          content: Text('Bu kullanıcıyı silmek istediğinizden emin misiniz?'),
+          title: const Text('Silme Onayı'),
+          content: const Text('Bu kullanıcıyı silmek istediğinizden emin misiniz?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(false); // İptal
               },
-              child: Text('İptal'),
+              child: const Text('İptal'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(true); // Onayla
               },
-              child: Text('Evet'),
+              child: const Text('Evet'),
             ),
           ],
         );
@@ -280,7 +280,7 @@ class _UsersPageState extends State<UsersPage> {
 
     if (deleteConfirmed) {
       await FirebaseFirestore.instance.collection('users').doc(userId).delete();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Kullanıcı başarıyla silindi')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Kullanıcı başarıyla silindi')));
       _loadUsers(); // Kullanıcı listesini yeniden yükle
     }
   }
@@ -334,7 +334,7 @@ class _UsersPageState extends State<UsersPage> {
 
       });
 
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Kullanıcı başarıyla güncellendi')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Kullanıcı başarıyla güncellendi')));
 
       // Formu temizle
       _clearForm();
@@ -403,90 +403,90 @@ class _UsersPageState extends State<UsersPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Kullanıcıyı Güncelle'),
+          title: const Text('Kullanıcıyı Güncelle'),
           content: SingleChildScrollView(
             child: Column(
               children: [
                 TextField(
                   controller: _nameController,
-                  decoration: InputDecoration(labelText: 'İsim'),
+                  decoration: const InputDecoration(labelText: 'İsim'),
                 ),
                 TextField(
                   controller: _surnameController,
-                  decoration: InputDecoration(labelText: 'Soyisim'),
+                  decoration: const InputDecoration(labelText: 'Soyisim'),
                 ),
                 TextField(
                   controller: _phoneController,
-                  decoration: InputDecoration(labelText: 'Telefon No'),
+                  decoration: const InputDecoration(labelText: 'Telefon No'),
                 ),
                 TextField(
                   controller: _emailController,
-                  decoration: InputDecoration(labelText: 'Mail Adresi'),
+                  decoration: const InputDecoration(labelText: 'Mail Adresi'),
                 ),
                 TextField(
                   controller: _matriculNoController,
-                  decoration: InputDecoration(labelText: 'Matrikül No'),
+                  decoration: const InputDecoration(labelText: 'Matrikül No'),
                 ),
                 TextField(
                   controller: _sicilNoController,
-                  decoration: InputDecoration(labelText: 'Sicil No'),
+                  decoration: const InputDecoration(labelText: 'Sicil No'),
                 ),
                 TextField(
                   controller: _tekrisController,
-                  decoration: InputDecoration(labelText: 'Tekris'),
+                  decoration: const InputDecoration(labelText: 'Tekris'),
                 ),
                 TextField(
                   controller: _gecisController,
-                  decoration: InputDecoration(labelText: 'Geçiş'),
+                  decoration: const InputDecoration(labelText: 'Geçiş'),
                 ),
                 TextField(
                   controller: _yukselisController,
-                  decoration: InputDecoration(labelText: 'Yükseliş'),
+                  decoration: const InputDecoration(labelText: 'Yükseliş'),
                 ),
                 TextField(
                   controller: _dogumController,
-                  decoration: InputDecoration(labelText: 'Doğum Tarihi'),
+                  decoration: const InputDecoration(labelText: 'Doğum Tarihi'),
                 ),
                 TextField(
                   controller: _meslekController,
-                  decoration: InputDecoration(labelText: 'Mesleği'),
+                  decoration: const InputDecoration(labelText: 'Mesleği'),
 
                 ),
                 TextField(
                   controller: _kangrubuController,
-                  decoration: InputDecoration(labelText: 'Kan Grubu'),
+                  decoration: const InputDecoration(labelText: 'Kan Grubu'),
                 ),
                 TextField(
                   controller: _rehberController,
-                  decoration: InputDecoration(labelText: 'Rehber Üstadı'),
+                  decoration: const InputDecoration(labelText: 'Rehber Üstadı'),
                 ),
                 TextField(
                   controller: _esisimController,
-                  decoration: InputDecoration(labelText: 'Eş İsim'),
+                  decoration: const InputDecoration(labelText: 'Eş İsim'),
                 ),
                 TextField(
                   controller: _estelController,
-                  decoration: InputDecoration(labelText: 'Eş Telefon'),
+                  decoration: const InputDecoration(labelText: 'Eş Telefon'),
                 ),
                 TextField(
                   controller: _esmailController,
-                  decoration: InputDecoration(labelText: 'Eş E-posta'),
+                  decoration: const InputDecoration(labelText: 'Eş E-posta'),
                 ),
                 TextField(
                   controller: _esmeslekController,
-                  decoration: InputDecoration(labelText: 'Eş Meslek'),
+                  decoration: const InputDecoration(labelText: 'Eş Meslek'),
                 ),
                 TextField(
                   controller: _esdogumController,
-                  decoration: InputDecoration(labelText: 'Eş Doğum Tarihi'),
+                  decoration: const InputDecoration(labelText: 'Eş Doğum Tarihi'),
                 ),
                 TextField(
                   controller: _eskangrubuController,
-                  decoration: InputDecoration(labelText: 'Eş Kan Grubu'),
+                  decoration: const InputDecoration(labelText: 'Eş Kan Grubu'),
                 ),
                 TextField(
                   controller: _passwordController,
-                  decoration: InputDecoration(labelText: 'Şifre'),
+                  decoration: const InputDecoration(labelText: 'Şifre'),
                 ),
               ],
             ),
@@ -496,14 +496,14 @@ class _UsersPageState extends State<UsersPage> {
               onPressed: () {
                 Navigator.of(context).pop(); // İptal et
               },
-              child: Text('İptal'),
+              child: const Text('İptal'),
             ),
             ElevatedButton(
               onPressed: () {
                 _updateUser(); // Güncelleme işlemini yap
                 Navigator.of(context).pop(); // Kapat
               },
-              child: Text('Güncelle'),
+              child: const Text('Güncelle'),
             ),
           ],
         );
@@ -515,7 +515,7 @@ class _UsersPageState extends State<UsersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.grey.shade200,
-        title: Text('Üye Listesi'),
+        title: const Text('Üye Listesi'),
       ),
       body: ListView.builder(
         itemCount: users.length,
@@ -527,15 +527,15 @@ class _UsersPageState extends State<UsersPage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  icon: Icon(Icons.delete, color: Colors.red,),
+                  icon: const Icon(Icons.delete, color: Colors.red,),
                   onPressed: () => _deleteUser(user['id']),
                 ),
                 IconButton(
-                  icon: Icon(Icons.search),
+                  icon: const Icon(Icons.search),
                   onPressed: () => _viewUserDetails(user),
                 ),
                 IconButton(
-                  icon: Icon(Icons.settings, color: Colors.green,),
+                  icon: const Icon(Icons.settings, color: Colors.green,),
                   onPressed: () => _showUpdateUserDialog(user['id']),
                 ),
               ],
@@ -543,9 +543,13 @@ class _UsersPageState extends State<UsersPage> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _showAddUserDialog,
-        child: Icon(Icons.add),
+      floatingActionButton: Container(
+        alignment: Alignment.bottomCenter,
+        child: FloatingActionButton(
+          backgroundColor: Colors.grey.shade300,
+          onPressed: _showAddUserDialog,
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
@@ -556,89 +560,89 @@ class _UsersPageState extends State<UsersPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Yeni Kullanıcı Ekle'),
+          title: const Text('Yeni Kullanıcı Ekle'),
           content: SingleChildScrollView(
             child: Column(
               children: [
                 TextField(
                   controller: _nameController,
-                  decoration: InputDecoration(labelText: 'İsim'),
+                  decoration: const InputDecoration(labelText: 'İsim'),
                 ),
                 TextField(
                   controller: _surnameController,
-                  decoration: InputDecoration(labelText: 'Soyisim'),
+                  decoration: const InputDecoration(labelText: 'Soyisim'),
                 ),
                 TextField(
                   controller: _phoneController,
-                  decoration: InputDecoration(labelText: 'Telefon No'),
+                  decoration: const InputDecoration(labelText: 'Telefon No'),
                 ),
                 TextField(
                   controller: _emailController,
-                  decoration: InputDecoration(labelText: 'Mail Adresi'),
+                  decoration: const InputDecoration(labelText: 'Mail Adresi'),
                 ),
                 TextField(
                   controller: _matriculNoController,
-                  decoration: InputDecoration(labelText: 'Matrikül No'),
+                  decoration: const InputDecoration(labelText: 'Matrikül No'),
                 ),
                 TextField(
                   controller: _sicilNoController,
-                  decoration: InputDecoration(labelText: 'Sicil No'),
+                  decoration: const InputDecoration(labelText: 'Sicil No'),
                 ),
                 TextField(
                   controller: _tekrisController,
-                  decoration: InputDecoration(labelText: 'Tekris'),
+                  decoration: const InputDecoration(labelText: 'Tekris'),
                 ),
                 TextField(
                   controller: _gecisController,
-                  decoration: InputDecoration(labelText: 'Geçiş'),
+                  decoration: const InputDecoration(labelText: 'Geçiş'),
                 ),
                 TextField(
                   controller: _yukselisController,
-                  decoration: InputDecoration(labelText: 'Yükseliş'),
+                  decoration: const InputDecoration(labelText: 'Yükseliş'),
                 ),
                 TextField(
                   controller: _dogumController,
-                  decoration: InputDecoration(labelText: 'Doğum Tarihi'),
+                  decoration: const InputDecoration(labelText: 'Doğum Tarihi'),
                 ),
                 TextField(
                   controller: _meslekController,
-                  decoration: InputDecoration(labelText: 'Mesleği'),
+                  decoration: const InputDecoration(labelText: 'Mesleği'),
                 ),
                 TextField(
                   controller: _kangrubuController,
-                  decoration: InputDecoration(labelText: 'Kan Grubu'),
+                  decoration: const InputDecoration(labelText: 'Kan Grubu'),
                 ),
                 TextField(
                   controller: _rehberController,
-                  decoration: InputDecoration(labelText: 'Rehber Üstadı'),
+                  decoration: const InputDecoration(labelText: 'Rehber Üstadı'),
                 ),
                 TextField(
                   controller: _esisimController,
-                  decoration: InputDecoration(labelText: 'Eş İsim'),
+                  decoration: const InputDecoration(labelText: 'Eş İsim'),
                 ),
                 TextField(
                   controller: _estelController,
-                  decoration: InputDecoration(labelText: 'Eş Telefon'),
+                  decoration: const InputDecoration(labelText: 'Eş Telefon'),
                 ),
                 TextField(
                   controller: _esmailController,
-                  decoration: InputDecoration(labelText: 'Eş E-posta'),
+                  decoration: const InputDecoration(labelText: 'Eş E-posta'),
                 ),
                 TextField(
                   controller: _esmeslekController,
-                  decoration: InputDecoration(labelText: 'Eş Meslek'),
+                  decoration: const InputDecoration(labelText: 'Eş Meslek'),
                 ),
                 TextField(
                   controller: _esdogumController,
-                  decoration: InputDecoration(labelText: 'Eş Doğum Tarihi'),
+                  decoration: const InputDecoration(labelText: 'Eş Doğum Tarihi'),
                 ),
                 TextField(
                   controller: _eskangrubuController,
-                  decoration: InputDecoration(labelText: 'Eş Kan Grubu'),
+                  decoration: const InputDecoration(labelText: 'Eş Kan Grubu'),
                 ),
                 TextField(
                   controller: _passwordController,
-                  decoration: InputDecoration(labelText: 'Şifre'),
+                  decoration: const InputDecoration(labelText: 'Şifre'),
                 ),
               ],
             ),
@@ -648,14 +652,14 @@ class _UsersPageState extends State<UsersPage> {
               onPressed: () {
                 Navigator.of(context).pop(); // İptal et
               },
-              child: Text('İptal'),
+              child: const Text('İptal'),
             ),
             ElevatedButton(
               onPressed: () {
                 _addUser(); // Kullanıcıyı ekle
                 Navigator.of(context).pop(); // Kapat
               },
-              child: Text('Tamam'),
+              child: const Text('Tamam'),
             ),
           ],
         );

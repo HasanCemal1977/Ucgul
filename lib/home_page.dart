@@ -8,6 +8,8 @@ import 'users_page2.dart';
 import 'change_password_page.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -27,95 +29,15 @@ class _HomePageState extends State<HomePage> {
   int selectedDateIndex = 0; // Seçilen tarihin indeksini tutacağız
   // Settings butonuna tıklanıp tıklanmadığını kontrol etmek için değişken
 
-  bool _isPasswordScreenVisible = true;  // Başlangıçta şifre ekranı görünsün
+  //final bool _isPasswordScreenVisible = true;  // Başlangıçta şifre ekranı görünsün
 
   // Veritabanından alınacak değer
-  late bool _acilIsTercih = true;  // Varsayılan olarak true, Firestore'dan alınacak
-
-  // Firestore'dan acilIsTercih değerini almak için fonksiyon
+  // late final bool _acilIsTercih = true;  // Varsayılan olarak true, Firestore'dan alınacak
 
 
-  // Checkbox durumunu Firestore'a kaydetme
-  // Future<void> _updateUserSettings(bool value) async {
-  //   var userDoc = FirebaseFirestore.instance.collection('users').doc('userID');
-  //   await userDoc.update({'acilIsTercih': value});
-  // }
-  //
-  // // settings dialog method
-  // // Firestore'dan acilIsTercih değerini almak için fonksiyon
-  // Future<void> _getUserSettings() async {
-  //   var userDoc = await FirebaseFirestore.instance.collection('users').doc('userID').get();
-  //   setState(() {
-  //     _acilIsTercih = userDoc['acilIsTercih'] ?? true;  // Varsayılan olarak false (boş)
-  //     _isPasswordScreenVisible = _acilIsTercih;
-  //   });
-  // }
 
-// settings dialog method
-//   void _showSettingsDialog() {
-//     showDialog(
-//       context: context,
-//       barrierDismissible: true,
-//       builder: (BuildContext context) {
-//         return AlertDialog(
-//           //title: Text("Ayarlar"),
-//           content: Column(
-//             mainAxisSize: MainAxisSize.min,
-//             children: [
-//               Row(
-//                 children: [
-//                   // Checkbox(
-//                   //   value: _acilIsTercih, // Checkbox'un değeri burada
-//                   //   onChanged: (value) {
-//                   //     setState(() {
-//                   //       _acilIsTercih = value!; // Checkbox durumunu güncelle
-//                   //     });
-//                   //   },
-//                   // ),
-//                   // Text("Şifre ekranı gelmesin"),
-//                 ],
-//               ),
-//               SizedBox(height: 20), // Şifre değiştirme butonu ile araya boşluk ekleyelim
-//               ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey.shade600)),
-//                 onPressed: () {
-//                   // Şifre değiştirme sayfasına yönlendir
-//                   Navigator.push(
-//                     context,
-//                     MaterialPageRoute(builder: (context) => ChangePasswordPage()),
-//                   );
-//                 },
-//                 child: Text('Şifre Değiştir', style: TextStyle(color: Colors.orangeAccent, fontSize: 18),),
-//               ),
-//             ],
-//           ),
-//           actions: <Widget>[
-//             TextButton(
-//               child: Text("Tamam"),
-//               onPressed: () {
-//                 // Değişiklikleri kaydediyoruz
-//              //   _updateUserSettings(_acilIsTercih); // Firestore'a kaydediyoruz
-//                 Navigator.of(context).pop(); // Dialog'u kapatıyoruz
-//
-//                 // Eğer şifre ekranı görünmesin seçilmişse, HomePage'e yönlendir
-//                 if (_acilIsTercih) {
-//                   Navigator.pushReplacement(
-//                     context,
-//                     MaterialPageRoute(builder: (context) => HomePage()), // HomePage'e yönlendir
-//                   );
-//                 } else {
-//                   // Şifre ekranı görünmesi gerekiyorsa, LoginPage'e yönlendir
-//                   Navigator.pushReplacement(
-//                     context,
-//                     MaterialPageRoute(builder: (context) => LoginPage()), // LoginPage'e yönlendir
-//                   );
-//                 }
-//               },
-//             ),
-//           ],
-//         );
-//       },
-//     );
-//   }
+
+
 
   @override
   void initState() {
@@ -136,7 +58,7 @@ class _HomePageState extends State<HomePage> {
 
     // Eğer bugün Çarşamba değilse, bir sonraki Çarşambaya git
     while (nextWednesday.weekday != DateTime.wednesday || nextWednesday.isBefore(today)) {
-      nextWednesday = nextWednesday.add(Duration(days: 1));
+      nextWednesday = nextWednesday.add(const Duration(days: 1));
     }
 
     return formatDate(nextWednesday); // Bulduğumuz tarihi formatlayıp döndürüyoruz
@@ -194,7 +116,7 @@ class _HomePageState extends State<HomePage> {
             dates.add(formatDate(currentDay)); // İlgili çarşamba tarihini ekle
           }
         }
-        currentDay = currentDay.add(Duration(days: 1));
+        currentDay = currentDay.add(const Duration(days: 1));
       }
     }
     return dates;
@@ -225,30 +147,30 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.group, color: Colors.orangeAccent),
+            icon: const Icon(Icons.group, color: Colors.orangeAccent),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => UsersPage2()),
+                MaterialPageRoute(builder: (context) => const UsersPage2()),
               );
             },
           ),
           IconButton(
-            icon: Icon(Icons.settings, color: Colors.orangeAccent),
+            icon: const Icon(Icons.settings, color: Colors.orangeAccent),
             onPressed: () {
               // Şifre değiştirme sayfasına yönlendir
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ChangePasswordPage()),
+                MaterialPageRoute(builder: (context) => const ChangePasswordPage()),
               );
             }, // Settings butonuna tıklanınca dialog açılacak
           ),
           IconButton(
-            icon: Icon(Icons.exit_to_app, color: Colors.orangeAccent),
+            icon: const Icon(Icons.exit_to_app, color: Colors.orangeAccent),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
           ),
@@ -261,61 +183,59 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 16.0, right: 12),
-              child: Flexible(
-                child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                   // SizedBox(height: 10),
-                    Text('$selectedDate', style: MainHeader3),
-                  //  SizedBox(height: 10),
-                    Text('I. D:. Çalışması:', style: MainHeader),
-                    // Bu kısımdaki metni kaydırılabilir yapmak için SingleChildScrollView ekliyoruz
-                    Expanded(
+              child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                 // SizedBox(height: 10),
+                  Text(selectedDate, style: MainHeader3),
+                //  SizedBox(height: 10),
+                  Text('I. D:. Çalışması:', style: MainHeader),
+                  // Bu kısımdaki metni kaydırılabilir yapmak için SingleChildScrollView ekliyoruz
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        firstText,
+                        style: MainBody,
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                //  SizedBox(height: 8),
+                  Text('II. D:. Çalışması:', style: MainHeader),
+                  Flexible(
+                    child: SizedBox(height: 50,
                       child: SingleChildScrollView(
                         child: Text(
-                          '$firstText',
+                          secondText,
                           style: MainBody,
                           textAlign: TextAlign.left,
                         ),
                       ),
                     ),
-                  //  SizedBox(height: 8),
-                    Text('II. D:. Çalışması:', style: MainHeader),
-                    Flexible(
-                      child: SizedBox(height: 50,
-                        child: SingleChildScrollView(
-                          child: Text(
-                            '$secondText',
-                            style: MainBody,
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
+                  ),
+                //  SizedBox(height: 8),
+                  Text('III. D:. Çalışması:', style: MainHeader),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        thirdText,
+                        style: MainBody,
+                        textAlign: TextAlign.left,
                       ),
                     ),
-                  //  SizedBox(height: 8),
-                    Text('III. D:. Çalışması:', style: MainHeader),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Text(
-                          '$thirdText',
-                          style: MainBody,
-                          textAlign: TextAlign.left,
-                        ),
+                  ),
+               //   SizedBox(height: 8),
+                  Text('Kardeş Sofrası', style: MainHeader),
+                  SizedBox(height: 50,
+                    child: SingleChildScrollView(
+                      child: Text(
+                        fourthText,
+                        style: MainBody,
+                        textAlign: TextAlign.left,
                       ),
                     ),
-                 //   SizedBox(height: 8),
-                    Text('Kardeş Sofrası', style: MainHeader),
-                    SizedBox(height: 50,
-                      child: SingleChildScrollView(
-                        child: Text(
-                          '$fourthText',
-                          style: MainBody,
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -379,7 +299,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   TextField(
                     obscureText: true, // Şifreyi gizleyin
-                    decoration: InputDecoration(labelText: "Şifre"),
+                    decoration: const InputDecoration(labelText: "Şifre"),
                     onChanged: (value) {
                       setState(() {
                         _enteredPassword = value; // Girilen şifreyi al
@@ -391,7 +311,7 @@ class _HomePageState extends State<HomePage> {
             ),
             actions: <Widget>[
               TextButton(
-                child: Text("İptal"),
+                child: const Text("İptal"),
                 onPressed: () {
                   Navigator.of(context).pop(); // Dialog'ı kapat
                   setState(() {
@@ -402,7 +322,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               TextButton(
-                child: Text("Giriş"),
+                child: const Text("Giriş"),
                 onPressed: () {
                   if (_enteredPassword == 'Ucgul1964') {
                     Navigator.of(context).pop(); // Şifre doğruysa dialog'ı kapat
@@ -414,11 +334,11 @@ class _HomePageState extends State<HomePage> {
                     // Şifre doğruysa AdminPage'e yönlendir
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => AdminPage()), // AdminPage'e yönlendirme
+                      MaterialPageRoute(builder: (context) => const AdminPage()), // AdminPage'e yönlendirme
                     );
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("Yanlış şifre"))
+                        const SnackBar(content: Text("Yanlış şifre"))
                     );
                   }
                 },

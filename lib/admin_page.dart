@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home_page.dart'; // HomePage import
 
 class AdminPage extends StatefulWidget {
+  const AdminPage({super.key});
+
   @override
   _AdminPageState createState() => _AdminPageState();
 }
@@ -114,7 +116,7 @@ class _AdminPageState extends State<AdminPage> {
           'third_text': text3,
           'fourth_text': text4,
         });
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Veri başarıyla kaydedildi')));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Veri başarıyla kaydedildi')));
       } else {
         // Mevcut veriyi güncelliyoruz
         await FirebaseFirestore.instance.collection('texts').doc(documentId).update({
@@ -124,7 +126,7 @@ class _AdminPageState extends State<AdminPage> {
           'third_text': text3,
           'fourth_text': text4,
         });
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Veri başarıyla güncellendi')));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Veri başarıyla güncellendi')));
       }
       _clearFields(); // Alanları temizle
     }
@@ -146,7 +148,7 @@ class _AdminPageState extends State<AdminPage> {
   void _deleteData() async {
     if (documentId.isNotEmpty) {
       await FirebaseFirestore.instance.collection('texts').doc(documentId).delete();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Veri başarıyla silindi')));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Veri başarıyla silindi')));
       _clearFields(); // Alanları temizle
     }
   }
@@ -156,25 +158,25 @@ class _AdminPageState extends State<AdminPage> {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.grey.shade600,
        // automaticallyImplyLeading: false,
-        title: Text('Yönetici Paneli', style: TextStyle(color: Colors.white),),
+        title: const Text('Yönetici Paneli', style: TextStyle(color: Colors.white),),
         actions: [
           IconButton(color: Colors.orangeAccent,
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             onPressed: () {
               // HomePage'e gitmek için yönlendiriyoruz
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomePage()),
+                MaterialPageRoute(builder: (context) => const HomePage()),
               );
             },
           ),
           IconButton(color: Colors.orangeAccent,
-            icon: Icon(Icons.group),
+            icon: const Icon(Icons.group),
             onPressed: () {
               // HomePage'e gitmek için yönlendiriyoruz
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => UsersPage()),
+                MaterialPageRoute(builder: (context) => const UsersPage()),
               );
             },
           ),
@@ -188,26 +190,26 @@ class _AdminPageState extends State<AdminPage> {
               // Dört adet metin kutusu ekliyoruz
               TextField(
                 controller: _controller1,
-                decoration: InputDecoration(labelText: 'I. D:. Çalışması'),
+                decoration: const InputDecoration(labelText: 'I. D:. Çalışması'),
               ),
               TextField(
                 controller: _controller2,
-                decoration: InputDecoration(labelText: 'II. D:. Çalışması'),
+                decoration: const InputDecoration(labelText: 'II. D:. Çalışması'),
               ),
               TextField(
                 controller: _controller3,
-                decoration: InputDecoration(labelText: 'III. D:. Çalışması'),
+                decoration: const InputDecoration(labelText: 'III. D:. Çalışması'),
               ),
               TextField(
                 controller: _controller4,
-                decoration: InputDecoration(labelText: 'Kardeş Sofrası'),
+                decoration: const InputDecoration(labelText: 'Kardeş Sofrası'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _saveData,
-                child: Text('Tamam'),
+                child: const Text('Tamam'),
               ),
-              SizedBox(height: 100),
+              const SizedBox(height: 100),
 
               // CupertinoPicker ekliyoruz
               SizedBox(
@@ -224,7 +226,7 @@ class _AdminPageState extends State<AdminPage> {
                   children: wednesdays.map((wednesday) {
                     return Text(
                       wednesday, // Format: 14 Ocak 2025
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     );
                   }).toList(),
                 ),

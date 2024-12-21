@@ -3,6 +3,8 @@ import 'home_page.dart'; // HomePage import ediliyor.
 import 'user_service.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -43,14 +45,14 @@ class _LoginPageState extends State<LoginPage> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Hata'),
-          content: Text('Geçersiz kullanıcı adı veya şifre.'),
+          title: const Text('Hata'),
+          content: const Text('Geçersiz kullanıcı adı veya şifre.'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Tamam'),
+              child: const Text('Tamam'),
             ),
           ],
         ),
@@ -59,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
       // Eğer giriş başarılıysa
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomePage()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     }
   }
@@ -68,10 +70,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: const Text(''),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -80,18 +82,18 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               autofocus: true,
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Kullanıcı adı', border: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: BorderSide(color: Colors.grey))),
+              decoration: InputDecoration(labelText: 'Kullanıcı adı', border: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: const BorderSide(color: Colors.grey))),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Şifre', border: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: BorderSide(color: Colors.grey))),
+              decoration: InputDecoration(labelText: 'Şifre', border: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: const BorderSide(color: Colors.grey))),
               obscureText: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _login,
-              child: Text('Giriş Yap'),
+              child: const Text('Giriş Yap'),
             ),
           ],
         ),
