@@ -1,5 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'settings_service.dart'; // SettingsService'yi import et
 
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({super.key});
@@ -9,41 +11,72 @@ class ChangePasswordPage extends StatefulWidget {
 }
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
-  String _oldPassword = '';  // Kullanıcıdan alınacak eski şifre
-  String _newPassword = '';  // Kullanıcıdan alınacak yeni şifre
-  String _errorMessage = ''; // Hata mesajı
+  String _oldPassword = '';  // Eski şifre
+  String _newPassword = '';  // Yeni şifre
+  String _errorMessage = '';
+  bool _passwordless = false; // Şifresiz giriş durumu
+  final SettingsService _settingsService = SettingsService();
 
-  // Eski şifreyi kontrol etme ve yeni şifreyi Firestore'a güncelleme fonksiyonu
-  Future<void> _changePassword() async {
+  @override
+  void initState() {
+    super.initState();
+    // Şifresiz giriş tercihini Flutter Secure Storage'dan alıyoruz
+    _loadPasswordlessPreference();
+  }
+
+  // Şifresiz giriş tercihini almak
+  Future<void> _loadPasswordlessPreference() async {
+    bool passwordless = await _settingsService.getPasswordlessPreference();
+    setState(() {
+      _passwordless = passwordless;
+    });
+  }
+
+  // Şifresiz giriş durumunu güncelleme
+  Future<void> _updatePasswordlessStatus() async {
     try {
-      // Firestore'dan kullanıcıyı bulalım
-      var collection = FirebaseFirestore.instance.collection('users');
-
-      // Kullanıcıyı Firestore'dan çekiyoruz. Burada, kullanıcı şifresini kontrol edeceğiz.
-      var querySnapshot = await collection
-          .where('password', isEqualTo: _oldPassword)  // Eski şifreyi kontrol ediyoruz
-          .get();
-
-      if (querySnapshot.docs.isNotEmpty) {
-        var userDoc = querySnapshot.docs.first; // Kullanıcıyı bulduk
-
-        // Eski şifre doğruysa, yeni şifreyi kaydedelim
-        await userDoc.reference.update({
-          'password': _newPassword,  // Yeni şifreyi Firestore'a kaydediyoruz
-        });
-
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Şifre başarıyla değiştirildi")));
-      } else {
-        setState(() {
-          _errorMessage = "Eski şifre yanlış.";
-        });
-        print('Eski şifre yanlış');
-      }
+      await _settingsService.setPasswordlessPreference(_passwordless);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Şifresiz giriş durumu güncellendi")),
+      );
     } catch (e) {
       setState(() {
         _errorMessage = "Hata: $e";
       });
-      print('Hata: $e');
+    }
+  }
+
+  // Şifreyi değiştirme fonksiyonu
+  Future<void> _changePassword() async {
+    try {
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user == null) {
+        setState(() {
+          _errorMessage = "Kullanıcı giriş yapmamış.";
+        });
+        return;
+      }
+
+      // Eski şifreyi doğrulamak için mevcut kullanıcıyı şifre ile yeniden doğruluyoruz
+      final AuthCredential credential = EmailAuthProvider.credential(
+        email: user.email!,
+        password: _oldPassword,
+      );
+
+      // Mevcut şifreyi doğrulama
+      await user.reauthenticateWithCredential(credential);
+
+      // Şifre doğrulandıktan sonra yeni şifreyi ayarlıyoruz
+      await user.updatePassword(_newPassword);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Şifre başarıyla değiştirildi")),
+      );
+    } catch (e) {
+      setState(() {
+        _errorMessage = "Hata: $e";  // Hata mesajını göster
+      });
     }
   }
 
@@ -57,35 +90,52 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Eski şifreyi alacak olan TextField
+            // Eski şifre girişi
             TextField(
               obscureText: true,
               decoration: const InputDecoration(labelText: "Eski Şifre"),
               onChanged: (value) {
                 setState(() {
-                  _oldPassword = value; // Eski şifreyi alıyoruz
+                  _oldPassword = value;
                 });
               },
             ),
             const SizedBox(height: 20),
-            // Yeni şifreyi alacak olan TextField
+            // Yeni şifre girişi
             TextField(
               obscureText: true,
               decoration: const InputDecoration(labelText: "Yeni Şifre"),
               onChanged: (value) {
                 setState(() {
-                  _newPassword = value; // Yeni şifreyi alıyoruz
+                  _newPassword = value;
                 });
               },
             ),
             const SizedBox(height: 20),
-            // Şifre değiştirme işlemi için buton
+            // Şifreyi değiştir butonu
             ElevatedButton(
-              onPressed: _changePassword, // Şifreyi değiştirmek için bu fonksiyonu çağırıyoruz
+              onPressed: _changePassword,
               child: const Text('Şifreyi Değiştir'),
             ),
             const SizedBox(height: 20),
-            // Hata mesajını göstermek için
+            // Şifresiz giriş durumu (Switch)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Şifresiz Giriş"),
+                CupertinoSwitch(
+                  value: _passwordless,
+                  onChanged: (bool value) {
+                    setState(() {
+                      _passwordless = value;
+                    });
+                    _updatePasswordlessStatus(); // Şifresiz giriş durumunu güncelle
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            // Hata mesajı
             if (_errorMessage.isNotEmpty)
               Text(
                 _errorMessage,

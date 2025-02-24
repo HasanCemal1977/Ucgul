@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firestoredeneme/lodges_page2.dart';
 import 'package:firestoredeneme/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -152,6 +153,15 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const UsersPage2()),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.account_balance_sharp, color: Colors.orangeAccent),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LodgesPage()),
               );
             },
           ),

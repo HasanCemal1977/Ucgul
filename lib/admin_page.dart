@@ -1,3 +1,4 @@
+import 'package:firestoredeneme/lodges_page.dart';
 import 'package:firestoredeneme/users_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -177,6 +178,16 @@ class _AdminPageState extends State<AdminPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const UsersPage()),
+              );
+            },
+          ),
+          IconButton(color: Colors.orangeAccent,
+            icon: const Icon(Icons.account_balance),
+            onPressed: () {
+              // HomePage'e gitmek için yönlendiriyoruz
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LodgesPage()),
               );
             },
           ),

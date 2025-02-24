@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart'; // HomePage import ediliyor.
-import 'user_service.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Firebase Auth importu
+import 'home_page.dart'; // HomePage import ediliyor
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,58 +12,62 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final UserService _userService = UserService();
-  List<Map<String, String>> _passwordControlList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _loadPasswordControlList();
-  }
-
-  // Firebase'den kullanıcı verilerini alıp passwordControlList'i oluşturuyoruz.
-  Future<void> _loadPasswordControlList() async {
-    final passwordList = await _userService.getPasswordControlList();
-    setState(() {
-      _passwordControlList = passwordList;
-    });
-  }
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // Giriş işlemi
-  void _login() {
+  void _login() async {
     final email = _emailController.text;
     final password = _passwordController.text;
 
-    // Veritabanındaki kullanıcı ile eşleşen email ve şifreyi kontrol ediyoruz
-    final user = _passwordControlList.firstWhere(
-          (user) => user['email'] == email && user['password'] == password,
-      orElse: () => {},
-    );
+    try {
+      // Firebase ile giriş yapmayı deniyoruz
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-    if (user.isEmpty) {
-      // Eğer kullanıcı veya şifre yanlışsa
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Hata'),
-          content: const Text('Geçersiz kullanıcı adı veya şifre.'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Tamam'),
-            ),
-          ],
-        ),
-      );
-    } else {
       // Eğer giriş başarılıysa
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
-      );
+      if (userCredential.user != null) {
+        // Giriş başarılı, HomePage'e yönlendiriyoruz
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      // Firebase hata durumlarını kontrol ediyoruz
+      String errorMessage = '';
+
+      if (e.code == 'user-not-found') {
+        errorMessage = 'Kullanıcı bulunamadı.';
+      } else if (e.code == 'wrong-password') {
+        errorMessage = 'Geçersiz şifre.';
+      } else {
+        errorMessage = 'Bir hata oluştu. Lütfen tekrar deneyin.';
+      }
+
+      // Hata mesajını gösteriyoruz
+      _showErrorDialog(errorMessage);
     }
+  }
+
+  // Hata mesajını gösterme fonksiyonu
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Hata'),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Tamam'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -82,12 +86,23 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               autofocus: true,
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Kullanıcı adı', border: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: const BorderSide(color: Colors.grey))),
+              decoration: InputDecoration(
+                  labelText: 'Kullanıcı adı',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(color: Colors.grey),
+                  )),
             ),
             const SizedBox(height: 15),
             TextField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Şifre', border: OutlineInputBorder(borderRadius: BorderRadius.circular(5), borderSide: const BorderSide(color: Colors.grey))),
+              decoration: InputDecoration(
+                labelText: 'Şifre',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                  borderSide: const BorderSide(color: Colors.grey),
+                ),
+              ),
               obscureText: true,
             ),
             const SizedBox(height: 20),

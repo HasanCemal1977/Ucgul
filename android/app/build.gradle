@@ -6,8 +6,16 @@ plugins {
 
 android {
     namespace = "com.example.firestoredeneme"  // Uygulamanızın doğru namespace'ini buraya yazın
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+
+    compileSdkVersion 34 // Compile SDK versiyonunu doğru şekilde tanımlıyoruz.
+
+    defaultConfig {
+        applicationId = "com.program.ucgul1"  // Burayı doğru şekilde değiştirin
+        minSdkVersion 23  // Minimum SDK versiyonunu burada tanımlıyoruz
+        targetSdkVersion 34  // Hedef SDK versiyonunu doğru bir şekilde tanımlıyoruz
+        versionCode 1  // Uygulama versiyon kodu, genellikle her sürümde artar
+        versionName "1.0.0"  // Uygulama versiyon adı
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -18,14 +26,6 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8
     }
 
-    defaultConfig {
-        applicationId = "com.program.ucgul1"  // Burayı doğru şekilde değiştirin
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
-    }
-
     buildTypes {
         release {
             signingConfig = signingConfigs.debug
@@ -33,11 +33,12 @@ android {
     }
 
     buildFeatures {
-        buildConfig true  // BuildConfig özelliğini doğru şekilde etkinleştirdiniz
+        buildConfig true  // BuildConfig özelliğini doğru şekilde etkinleştiriyoruz
     }
 }
 
 flutter {
     source = "../.."  // Flutter SDK yolunun doğru olduğundan emin olun
 }
+
 apply plugin: 'com.google.gms.google-services'  // Firebase'i etkinleştiren satır

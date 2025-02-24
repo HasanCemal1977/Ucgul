@@ -1,4 +1,6 @@
 
+//mport 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -70,6 +72,7 @@ class _UsersPageState extends State<UsersPage> {
           'esdogum': doc['esdogum'],
           'eskangrubu': doc['eskangrubu'],
           'password': doc['password'],
+          'acilistercih': doc['acilistercih'],
 
         };
       }).toList();
@@ -309,6 +312,7 @@ class _UsersPageState extends State<UsersPage> {
     String password = _passwordController.text.trim();
 
 
+
     if (name.isNotEmpty && surname.isNotEmpty && phone.isNotEmpty && email.isNotEmpty) {
       await FirebaseFirestore.instance.collection('users').doc(selectedUserId).update({
         'name': name,
@@ -331,6 +335,7 @@ class _UsersPageState extends State<UsersPage> {
         'esdogum': esdogum,
         'eskangrubu': eskangrubu,
         'password': password,
+
 
       });
 
